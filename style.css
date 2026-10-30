@@ -232,6 +232,19 @@ button { font: inherit; color: inherit; cursor: pointer; }
   border: calc(var(--card) * .03) solid #fff;
 }
 .card .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card .face.captioned { display: flex; flex-direction: column; }
+.card .face.captioned img { flex: 1; min-height: 0; object-fit: contain; }
+.card .face .caption {
+  flex: none;
+  padding: 2% 4% 3%;
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--rot);
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: anywhere;
+}
 .card .face.text {
   background: #fffbd6;
   display: flex;

@@ -156,7 +156,7 @@ function neuesSpiel() {
   mischen(karten);
 
   spiel = {
-    a, b, karten,
+    a, b, karten, textModus,
     spieler: Array.from({ length: settings.spieler }, (_, i) => ({
       name: settings.namen[i], farbe: SPIELER_FARBEN[i], punkte: 0, zuege: 0,
     })),
@@ -186,7 +186,10 @@ function baueBrett() {
     el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', verdeckt');
     const face = k.art === 'text'
       ? '<div class="face text"><span>' + (k.motiv.titel ? '<strong class="titel">' + escapeHtml(k.motiv.titel) + '</strong>' : '') + escapeHtml(k.motiv.text) + '</span></div>'
-      : '<div class="face"><img src="' + k.motiv.img + '" alt="" draggable="false"></div>';
+      : (k.motiv.titel && !spiel.textModus)
+        // Lernsets im Bild-Modus: Bezeichnung unter das Bild schreiben
+        ? '<div class="face captioned"><img src="' + k.motiv.img + '" alt="" draggable="false"><span class="caption">' + escapeHtml(k.motiv.titel) + '</span></div>'
+        : '<div class="face"><img src="' + k.motiv.img + '" alt="" draggable="false"></div>';
     el.innerHTML = '<div class="inner"><div class="back" aria-hidden="true">?</div>' + face + '</div>';
     el.addEventListener('click', () => karteGeklickt(i));
     k.el = el;
@@ -216,6 +219,19 @@ function layout() {
 function passeTexteAn() {
   const size = parseFloat($('#board').style.getPropertyValue('--card'));
   for (const k of spiel.karten) {
+    const cap = k.el.querySelector('.caption');
+    if (cap) {
+      // Beschriftung: höchstens zwei Zeilen, sonst Schrift verkleinern
+      let fs = size * 0.11;
+      cap.style.fontSize = fs + 'px';
+      const cs = getComputedStyle(cap);
+      const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      while (fs > 6 && cap.scrollHeight > pad + fs * 1.1 * 2 + 2) {
+        fs -= 0.5;
+        cap.style.fontSize = fs + 'px';
+      }
+      continue;
+    }
     if (k.art !== 'text') continue;
     const face = k.el.querySelector('.face');
     let fs = size * 0.17;
