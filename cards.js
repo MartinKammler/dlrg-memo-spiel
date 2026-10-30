@@ -38,12 +38,14 @@ window.CARD_SETS = [
     id: 'wasserwelt',
     name: 'Wasserwelt',
     beschreibung: 'Tiere und Schätze aus dem Meer',
+    // Nummern bleiben fest an den Bilddateien; entfernte Motive (ähnlich zu anderen): w10, w11
     motive: [
-      'Wal', 'Krake', 'Robbe', 'Makrele', 'Papageifisch', 'Falterfisch', 'Blauer Fischschwarm',
-      'Roter Streifenfisch', 'Pinker Fisch', 'Gelber Fischschwarm', 'Sardinenschwarm', 'Seepferdchen',
-      'Schatztruhe', 'Kugelfisch', 'Anglerfisch', 'Krabbe', 'Qualle', 'Muschel mit Perle', 'DLRG-Schildkröte',
-    ].map((name, i) => {
-      const id = 'w' + String(i + 1).padStart(2, '0');
+      [1, 'Wal'], [2, 'Krake'], [3, 'Robbe'], [4, 'Makrele'], [5, 'Papageifisch'], [6, 'Falterfisch'],
+      [7, 'Fischschwarm'], [8, 'Roter Streifenfisch'], [9, 'Pinker Fisch'], [12, 'Seepferdchen'],
+      [13, 'Schatztruhe'], [14, 'Kugelfisch'], [15, 'Anglerfisch'], [16, 'Krabbe'], [17, 'Qualle'],
+      [18, 'Muschel mit Perle'], [19, 'DLRG-Schildkröte'],
+    ].map(([n, name]) => {
+      const id = 'w' + String(n).padStart(2, '0');
       return { id, name, img: 'img/wasserwelt/' + id + '.webp' };
     }),
   },
