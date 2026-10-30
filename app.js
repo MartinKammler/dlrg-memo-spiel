@@ -70,14 +70,23 @@ function renderSetup() {
     setChoice.appendChild(b);
   }
 
-  // Bild/Text-Modus nur bei Sets mit Texten
+  // Modus: Bild + Bild oder Bild + Text (nur bei Sets mit Texten)
+  const set = aktuellesSet();
+  const textMoeglich = !!set.textModus;
   const modeRow = $('#modeRow');
-  modeRow.classList.toggle('hidden', !aktuellesSet().textModus);
-  modeRow.querySelector('[data-mode=text]').innerHTML = 'Bild&nbsp;+&nbsp;' + escapeHtml(aktuellesSet().textLabel || 'Regeltext');
+  const textBtn = modeRow.querySelector('[data-mode=text]');
+  textBtn.innerHTML = 'Bild&nbsp;+&nbsp;' + escapeHtml(set.textLabel || 'Text');
+  textBtn.disabled = !textMoeglich;
+  const modusAktiv = textMoeglich ? settings.modus : 'bild';
   modeRow.querySelectorAll('.chip').forEach((b) => {
-    b.classList.toggle('selected', b.dataset.mode === settings.modus);
+    b.classList.toggle('selected', b.dataset.mode === modusAktiv);
     b.onclick = () => { settings.modus = b.dataset.mode; renderSetup(); };
   });
+  $('#modeHint').textContent = !textMoeglich
+    ? 'Bild + Text gibt es bei: ' + CARD_SETS.filter((s) => s.textModus).map((s) => s.name).join(', ') + '.'
+    : modusAktiv === 'text'
+      ? 'Zu jedem Bild gehört eine Karte mit ' + (set.textLabel === 'Name' ? 'Namen und Erklärung.' : 'dem Regeltext.')
+      : 'Zwei gleiche Bilder bilden ein Paar.';
 
   // Raster
   const motive = aktuellesSet().motive.length;
