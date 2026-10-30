@@ -246,6 +246,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   overflow-wrap: anywhere;
 }
 
+.card .face.text .titel { display: block; font-size: 1.25em; color: var(--rot); margin-bottom: .25em; }
+
 .card.matched .face { box-shadow: 0 0 0 calc(var(--card) * .05) var(--mc); }
 .card.matched { cursor: default; }
 .card.matched .badge {

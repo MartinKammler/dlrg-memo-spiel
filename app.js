@@ -37,6 +37,8 @@ function zeitFormat(ms) {
   return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
 }
 
+const infoText = (m) => (m.titel ? m.titel + ': ' : '') + m.text;
+
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
@@ -71,6 +73,7 @@ function renderSetup() {
   // Bild/Text-Modus nur bei Sets mit Texten
   const modeRow = $('#modeRow');
   modeRow.classList.toggle('hidden', !aktuellesSet().textModus);
+  modeRow.querySelector('[data-mode=text]').innerHTML = 'Bild&nbsp;+&nbsp;' + escapeHtml(aktuellesSet().textLabel || 'Regeltext');
   modeRow.querySelectorAll('.chip').forEach((b) => {
     b.classList.toggle('selected', b.dataset.mode === settings.modus);
     b.onclick = () => { settings.modus = b.dataset.mode; renderSetup(); };
@@ -182,7 +185,7 @@ function baueBrett() {
     el.className = 'card';
     el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', verdeckt');
     const face = k.art === 'text'
-      ? '<div class="face text"><span>' + escapeHtml(k.motiv.text) + '</span></div>'
+      ? '<div class="face text"><span>' + (k.motiv.titel ? '<strong class="titel">' + escapeHtml(k.motiv.titel) + '</strong>' : '') + escapeHtml(k.motiv.text) + '</span></div>'
       : '<div class="face"><img src="' + k.motiv.img + '" alt="" draggable="false"></div>';
     el.innerHTML = '<div class="inner"><div class="back" aria-hidden="true">?</div>' + face + '</div>';
     el.addEventListener('click', () => karteGeklickt(i));
@@ -257,11 +260,11 @@ function karteGeklickt(i) {
   if (k.gefunden || spiel.offen.includes(i)) return;
 
   k.el.classList.add('open');
-  k.el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', ' + (k.art === 'text' ? k.motiv.text : k.motiv.name || 'Bild ' + k.key));
+  k.el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', ' + (k.art === 'text' ? infoText(k.motiv) : k.motiv.name || 'Bild ' + k.key));
   spiel.offen.push(i);
 
   // Regeltext gut lesbar oben anzeigen, wenn eine Textkarte aufgedeckt wird
-  if (k.art === 'text') setStatus(k.motiv.text, true);
+  if (k.art === 'text') setStatus(infoText(k.motiv), true);
 
   if (spiel.offen.length < 2) return;
 
@@ -286,7 +289,7 @@ function karteGeklickt(i) {
     spiel.offen = [];
     navigator.vibrate?.(40);
     renderScores();
-    if (x.motiv.text) setStatus(x.motiv.text, true);
+    if (x.motiv.text) setStatus(infoText(x.motiv), true);
     else setStatus(spiel.spieler.length > 1 ? 'Paar gefunden! ' + s.name + ' ist nochmal dran.' : 'Paar gefunden!');
     if (spiel.gefunden === spiel.paare) setTimeout(spielEnde, 900);
   } else {

@@ -35,6 +35,27 @@ window.CARD_SETS = [
     ],
   },
   {
+    id: 'rettungsgeraete',
+    name: 'Rettungsgeräte',
+    beschreibung: 'Rettungsgeräte kennenlernen',
+    textModus: true,
+    textLabel: 'Name',
+    // Erklärungen sind Entwürfe – bitte fachlich prüfen.
+    motive: [
+      ['Wurfsack', 'Die Leine liegt im Sack. Man wirft ihn der Person im Wasser zu und zieht sie an Land.'],
+      ['Rettungsbrett', 'Damit paddelt man schnell zur Person und bringt sie darauf liegend an Land.'],
+      ['Rettungsball mit Wurfleine', 'Der Ball wird der Person mit der Leine zugeworfen.'],
+      ['Fernglas', 'Damit behält man die Wasserfläche im Blick und erkennt Gefahren früh.'],
+      ['Rettungsring', 'Wird der Person zugeworfen – sie hält sich daran fest.'],
+      ['Rettungsschlinge', 'Wird der Person umgelegt, um sie zu sichern und zu ziehen.'],
+      ['Rettungsboje', 'Fester Auftriebskörper mit Griffen – der Retter schwimmt ihn zur Person.'],
+      ['Gurtretter', 'Weicher Auftriebskörper, wird um die Person gelegt und verschlossen.'],
+    ].map(([titel, text], i) => {
+      const id = 'r' + String(i + 1).padStart(2, '0');
+      return { id, name: titel, titel, text, img: 'img/rettungsgeraete/' + id + '.webp' };
+    }),
+  },
+  {
     id: 'wasserwelt',
     name: 'Wasserwelt',
     beschreibung: 'Tiere und Schätze aus dem Meer',

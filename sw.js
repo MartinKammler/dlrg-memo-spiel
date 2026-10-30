@@ -1,6 +1,6 @@
 // Service Worker: alles vorab cachen, damit das Spiel offline läuft.
 // Bei jeder Änderung an Dateien VERSION hochzählen.
-const VERSION = 'dlrg-memory-v4';
+const VERSION = 'dlrg-memory-v5';
 const DATEIEN = [
   './',
   'app.js',
@@ -35,6 +35,14 @@ const DATEIEN = [
   'img/klassisch/k14.webp',
   'img/klassisch/k15.webp',
   'img/klassisch/k16.webp',
+  'img/rettungsgeraete/r01.webp',
+  'img/rettungsgeraete/r02.webp',
+  'img/rettungsgeraete/r03.webp',
+  'img/rettungsgeraete/r04.webp',
+  'img/rettungsgeraete/r05.webp',
+  'img/rettungsgeraete/r06.webp',
+  'img/rettungsgeraete/r07.webp',
+  'img/rettungsgeraete/r08.webp',
   'img/wasserwelt/w01.webp',
   'img/wasserwelt/w02.webp',
   'img/wasserwelt/w03.webp',
