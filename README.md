@@ -26,3 +26,11 @@ python3 -m http.server 8000
 Die Illustrationen sind Material der DLRG. Vor einer öffentlichen Veröffentlichung Nutzungsrechte klären.
 Die aktuellen Bilder sind aus Screenshots geschnitten (klassische Kacheln nur 126 px) – Originaldateien ersetzen sie 1:1.
 Die Baderegel-Texte in `cards.js` sind Entwürfe und sollten mit dem offiziellen Wortlaut abgeglichen werden.
+
+## Lizenz
+Der **Programmcode** (HTML, CSS, JavaScript) steht unter der [MIT-Lizenz](LICENSE).
+
+Die **Bilder** in `img/` und `icons/` sind davon ausdrücklich **ausgenommen**: Sie sind
+Material der DLRG bzw. aus Screenshots abgeleitet und **nicht** unter MIT lizenziert.
+Für deren Nutzung, Weitergabe oder Veröffentlichung sind die Rechte separat bei der DLRG
+zu klären.
