@@ -47,7 +47,7 @@ window.CARD_SETS = [
       ['Rettungsball mit Wurfleine', 'Der Ball wird der Person mit der Leine zugeworfen.'],
       ['Fernglas', 'Damit behält man die Wasserfläche im Blick und erkennt Gefahren früh.'],
       ['Rettungsring', 'Wird der Person zugeworfen – sie hält sich daran fest.'],
-      ['Rettungsschlinge', 'Wird der Person umgelegt, um sie zu sichern und zu ziehen.'],
+      ['Rettungsleine', 'Rettungsgurt mit Leine: Der Retter trägt den Gurt und wird vom Ufer aus gesichert und zurückgezogen.'],
       ['Rettungsboje', 'Fester Auftriebskörper mit Griffen – der Retter schwimmt ihn zur Person.'],
       ['Gurtretter', 'Weicher Auftriebskörper, wird um die Person gelegt und verschlossen.'],
     ].map(([titel, text], i) => {
