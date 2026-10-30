@@ -257,7 +257,7 @@ function karteGeklickt(i) {
   if (k.gefunden || spiel.offen.includes(i)) return;
 
   k.el.classList.add('open');
-  k.el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', ' + (k.motiv.text || 'Bild ' + k.key));
+  k.el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', ' + (k.art === 'text' ? k.motiv.text : k.motiv.name || 'Bild ' + k.key));
   spiel.offen.push(i);
 
   // Regeltext gut lesbar oben anzeigen, wenn eine Textkarte aufgedeckt wird

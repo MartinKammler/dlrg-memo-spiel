@@ -1,6 +1,6 @@
 // Service Worker: alles vorab cachen, damit das Spiel offline läuft.
 // Bei jeder Änderung an Dateien VERSION hochzählen.
-const VERSION = 'dlrg-memory-v2';
+const VERSION = 'dlrg-memory-v3';
 const DATEIEN = [
   './',
   'app.js',
@@ -35,6 +35,25 @@ const DATEIEN = [
   'img/klassisch/k14.webp',
   'img/klassisch/k15.webp',
   'img/klassisch/k16.webp',
+  'img/wasserwelt/w01.webp',
+  'img/wasserwelt/w02.webp',
+  'img/wasserwelt/w03.webp',
+  'img/wasserwelt/w04.webp',
+  'img/wasserwelt/w05.webp',
+  'img/wasserwelt/w06.webp',
+  'img/wasserwelt/w07.webp',
+  'img/wasserwelt/w08.webp',
+  'img/wasserwelt/w09.webp',
+  'img/wasserwelt/w10.webp',
+  'img/wasserwelt/w11.webp',
+  'img/wasserwelt/w12.webp',
+  'img/wasserwelt/w13.webp',
+  'img/wasserwelt/w14.webp',
+  'img/wasserwelt/w15.webp',
+  'img/wasserwelt/w16.webp',
+  'img/wasserwelt/w17.webp',
+  'img/wasserwelt/w18.webp',
+  'img/wasserwelt/w19.webp',
   'index.html',
   'manifest.webmanifest',
   'style.css',

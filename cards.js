@@ -34,6 +34,19 @@ window.CARD_SETS = [
       { id: 'b10', img: 'img/baderegeln/b10.webp', text: 'Bei Gewitter sofort raus aus dem Wasser!' },
     ],
   },
+  {
+    id: 'wasserwelt',
+    name: 'Wasserwelt',
+    beschreibung: 'Tiere und Schätze aus dem Meer',
+    motive: [
+      'Wal', 'Krake', 'Robbe', 'Makrele', 'Papageifisch', 'Falterfisch', 'Blauer Fischschwarm',
+      'Roter Streifenfisch', 'Pinker Fisch', 'Gelber Fischschwarm', 'Sardinenschwarm', 'Seepferdchen',
+      'Schatztruhe', 'Kugelfisch', 'Anglerfisch', 'Krabbe', 'Qualle', 'Muschel mit Perle', 'DLRG-Schildkröte',
+    ].map((name, i) => {
+      const id = 'w' + String(i + 1).padStart(2, '0');
+      return { id, name, img: 'img/wasserwelt/' + id + '.webp' };
+    }),
+  },
 ];
 
 // "Gemischt" wird automatisch aus allen Sets gebildet – ohne doppelte Motive.
