@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DLRG Memory</title>
+  <meta name="theme-color" content="#e30613">
+  <meta name="description" content="Memory-Spiel mit den DLRG-Enten und den Baderegeln – für 1 bis 4 Spieler.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Startbildschirm -->
+  <section id="setup" class="screen active">
+    <header class="title">
+      <h1>DLRG&nbsp;Memory</h1>
+      <p>Finde die Paare!</p>
+    </header>
+
+    <div class="panel">
+      <h2>Karten</h2>
+      <div id="setChoice" class="chips"></div>
+      <div id="modeRow" class="chips hidden">
+        <button type="button" class="chip" data-mode="bild">Bild&nbsp;+&nbsp;Bild</button>
+        <button type="button" class="chip" data-mode="text">Bild&nbsp;+&nbsp;Regeltext</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Spielfeld</h2>
+      <div id="gridChoice" class="chips"></div>
+      <p id="gridHint" class="hint"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Spieler</h2>
+      <div id="playerCount" class="chips">
+        <button type="button" class="chip" data-n="1">1</button>
+        <button type="button" class="chip" data-n="2">2</button>
+        <button type="button" class="chip" data-n="3">3</button>
+        <button type="button" class="chip" data-n="4">4</button>
+      </div>
+      <div id="playerNames"></div>
+    </div>
+
+    <button id="startBtn" type="button" class="primary">Los geht's!</button>
+  </section>
+
+  <!-- Spielfeld -->
+  <section id="game" class="screen">
+    <header class="bar">
+      <button id="menuBtn" type="button" class="icon-btn" aria-label="Zurück zum Menü">&#8962;</button>
+      <div id="scores" class="scores"></div>
+    </header>
+    <div id="status" class="status" aria-live="polite"></div>
+    <main id="boardWrap">
+      <div id="board" role="grid" aria-label="Spielfeld"></div>
+    </main>
+  </section>
+
+  <!-- Ergebnis -->
+  <div id="result" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+    <div class="dialog">
+      <h2 id="resultTitle"></h2>
+      <ol id="ranking"></ol>
+      <div class="dialog-buttons">
+        <button id="againBtn" type="button" class="primary">Nochmal</button>
+        <button id="setupBtn" type="button" class="secondary">Einstellungen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bestätigung Abbruch -->
+  <div id="confirm" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="dialog">
+      <h2>Spiel abbrechen?</h2>
+      <p>Der aktuelle Spielstand geht verloren.</p>
+      <div class="dialog-buttons">
+        <button id="confirmYes" type="button" class="primary">Abbrechen</button>
+        <button id="confirmNo" type="button" class="secondary">Weiterspielen</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="cards.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
