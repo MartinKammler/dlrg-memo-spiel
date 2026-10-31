@@ -1,4 +1,4 @@
-# DLRG Memory
+# DLRG Memo-Spiel
 
 Memory-Spiel im Browser mit den DLRG-Enten (klassisches Memory), den Baderegeln, den Rettungsgeräten und der Wasserwelt.
 Läuft als PWA auf PC, Tablet und Smartphone – auch offline.

@@ -1,17 +1,30 @@
 {
-  "name": "DLRG Memory",
-  "short_name": "Memory",
+  "name": "DLRG Memo-Spiel",
+  "short_name": "Memo-Spiel",
   "description": "Memory-Spiel mit den DLRG-Enten und den Baderegeln – für 1 bis 4 Spieler.",
   "lang": "de",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#f7fbfe",
+  "background_color": "#7a3a14",
   "theme_color": "#e30613",
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
