@@ -311,6 +311,13 @@ function setStatus(text, regel = false) {
   void st.offsetWidth; // Animation neu starten
   st.classList.toggle('rule', regel);
   st.textContent = text;
+  // Feste Schildgröße: Schrift verkleinern, bis der Text hineinpasst
+  let fs = 17;
+  st.style.fontSize = fs + 'px';
+  while (fs > 10 && st.scrollHeight > st.clientHeight + 1) {
+    fs -= 0.5;
+    st.style.fontSize = fs + 'px';
+  }
 }
 
 function karteGeklickt(i) {
