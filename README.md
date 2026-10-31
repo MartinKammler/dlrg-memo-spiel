@@ -28,7 +28,7 @@ python3 -m http.server 8000
 ## Hinweis zu den Bildern
 Die Illustrationen sind Material der DLRG. Vor einer öffentlichen Veröffentlichung Nutzungsrechte klären.
 Die aktuellen Bilder sind aus Screenshots geschnitten (klassische Kacheln nur 126 px) – Originaldateien ersetzen sie 1:1.
-Die Baderegel-Texte in `cards.js` sind Entwürfe und sollten mit dem offiziellen Wortlaut abgeglichen werden.
+Die Baderegel-Texte entsprechen dem offiziellen DLRG-Plakat „Baderegeln“ (2024).
 
 ## Lizenz
 Der **Programmcode** (HTML, CSS, JavaScript) steht unter der [MIT-Lizenz](LICENSE).

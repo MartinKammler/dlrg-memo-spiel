@@ -1,7 +1,7 @@
 // Kartensets – neue Motive einfach hier ergänzen.
 // Jedes Motiv: id (eindeutig), img (Pfad), optional text (für Bild–Text-Modus und Hinweis bei Treffer),
 // optional gleichWie (id eines anderen Motivs mit demselben Bild → im Set "Gemischt" nur einmal).
-// Die Baderegel-Texte sind Entwürfe – bitte mit den offiziellen DLRG-Baderegeln abgleichen.
+// Baderegel-Texte: offizieller Wortlaut (DLRG-Plakat Baderegeln 2024). Kurztitel selbst formuliert.
 
 // Klassische Kacheln, die es auch als Baderegel gibt (gleiches Bild, andere Größe).
 const GLEICHES_MOTIV = {
@@ -26,16 +26,16 @@ window.CARD_SETS = [
     textModus: true,
     textLabel: 'Regeltext',
     motive: [
-      { id: 'b01', img: 'img/baderegeln/b01.webp', titel: 'Wohlfühlen', text: 'Geh nur baden, wenn du dich wohlfühlst.' },
-      { id: 'b02', img: 'img/baderegeln/b02.webp', titel: 'Mit Aufsicht baden', text: 'Bade am besten dort, wo Rettungsschwimmer aufpassen.' },
-      { id: 'b03', img: 'img/baderegeln/b03.webp', titel: 'Anderen helfen', text: 'Ruf nur um Hilfe, wenn du in Gefahr bist – und hilf anderen, wenn sie Hilfe brauchen.' },
-      { id: 'b04', img: 'img/baderegeln/b04.webp', titel: 'Bescheid sagen', text: 'Sag einem Erwachsenen Bescheid, bevor du ins Wasser gehst.' },
-      { id: 'b05', img: 'img/baderegeln/b05.webp', titel: 'Nicht mit vollem Bauch', text: 'Geh nicht mit vollem Bauch ins Wasser.' },
-      { id: 'b06', img: 'img/baderegeln/b06.webp', titel: 'Erst abkühlen', text: 'Kühl dich ab, bevor du ins Wasser gehst.' },
-      { id: 'b07', img: 'img/baderegeln/b07.webp', titel: 'Erst prüfen, dann springen', text: 'Spring nur ins Wasser, wenn es frei und tief genug ist.' },
-      { id: 'b08', img: 'img/baderegeln/b08.webp', titel: 'Rücksicht nehmen', text: 'Habt zusammen Spaß – aber nicht rennen, schubsen oder untertauchen!' },
-      { id: 'b09', img: 'img/baderegeln/b09.webp', titel: 'Schwimmtiere sind keine Hilfe', text: 'Luftmatratzen und Schwimmtiere sind keine Schwimmhilfe.' },
-      { id: 'b10', img: 'img/baderegeln/b10.webp', titel: 'Bei Gewitter raus', text: 'Bei Gewitter sofort raus aus dem Wasser!' },
+      { id: 'b01', img: 'img/baderegeln/b01.webp', titel: 'Wohlfühlen', text: 'Ich gehe nur baden, wenn ich mich gut fühle.' },
+      { id: 'b02', img: 'img/baderegeln/b02.webp', titel: 'Mit Aufsicht baden', text: 'Ich gehe nur baden, wenn mir bei Problemen jemand helfen kann.' },
+      { id: 'b03', img: 'img/baderegeln/b03.webp', titel: 'Um Hilfe rufen', text: 'Wenn ich Probleme im Wasser habe, dann rufe ich laut um Hilfe und winke mit den Armen. Ich helfe Anderen, wenn sie im Wasser Probleme haben. Ich rufe nie „Hilfe“, wenn alles in Ordnung ist.' },
+      { id: 'b04', img: 'img/baderegeln/b04.webp', titel: 'Bescheid sagen', text: 'Ich sage Bescheid, wenn ich ins Wasser gehe.' },
+      { id: 'b05', img: 'img/baderegeln/b05.webp', titel: 'Nicht hungrig, nicht satt', text: 'Ich gehe weder hungrig noch direkt nach dem Essen ins Wasser.' },
+      { id: 'b06', img: 'img/baderegeln/b06.webp', titel: 'Erst abkühlen', text: 'Ich kühle mich ab, bevor ich ins Wasser gehe.' },
+      { id: 'b07', img: 'img/baderegeln/b07.webp', titel: 'Erst prüfen, dann springen', text: 'Ich gehe nur da baden, wo es erlaubt ist. Ich springe nur da ins Wasser, wo das Wasser tief und frei ist.' },
+      { id: 'b08', img: 'img/baderegeln/b08.webp', titel: 'Rücksicht nehmen', text: 'Ich nehme Rücksicht! Ich renne nicht, schubse nicht und drücke niemanden unter Wasser.' },
+      { id: 'b09', img: 'img/baderegeln/b09.webp', titel: 'Schwimmtiere sind keine Hilfe', text: 'Schwimmflügel, Schwimmtiere und Luftmatratze sind nicht sicher und schützen mich nicht vor dem Ertrinken.' },
+      { id: 'b10', img: 'img/baderegeln/b10.webp', titel: 'Bei Gewitter raus', text: 'Wenn ich draußen bade, gehe ich sofort aus dem Wasser, wenn es blitzt, donnert oder stark regnet. Baden bei Gewitter ist lebensgefährlich.' },
     ],
   },
   {
