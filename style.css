@@ -8,6 +8,15 @@
   --card: 80px;
   --gap: 8px;
   --player: var(--rot);
+  /* Messing-Thema (Variante A: helles, ruhiges Messing mit dunkler Gravur) */
+  --messing: repeating-linear-gradient(90deg, rgba(255, 255, 255, .05) 0 1px, transparent 1px 3px),
+             linear-gradient(180deg, #f8e8b0 0%, #ecd18a 50%, #e2c072 100%);
+  --messing-gedrueckt: repeating-linear-gradient(90deg, rgba(255, 255, 255, .04) 0 1px, transparent 1px 3px),
+             linear-gradient(180deg, #8a5d24 0%, #6b4518 50%, #55360f 100%);
+  --messing-rand: #8a6418;
+  --gravur: #2a1800;
+  --gravur-licht: 0 1px 0 rgba(255, 250, 225, .9);
+  --messing-schatten: inset 0 1px 0 rgba(255, 255, 255, .8), inset 0 -2px 3px rgba(120, 80, 0, .25), 0 3px 8px rgba(0, 0, 0, .5);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: var(--text);
 }
@@ -179,23 +188,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 17px;
   line-height: 1.2;
-  letter-spacing: .01em;
-  color: #4a3006;
-  text-shadow: 0 1px 0 rgba(255, 244, 200, .75), 0 -1px 0 rgba(60, 35, 0, .45);
+  color: var(--gravur);
+  text-shadow: var(--gravur-licht);
   border-radius: 8px;
-  border: 1px solid #6e4a10;
-  background:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, .06) 0 1px, transparent 1px 3px),
-    linear-gradient(180deg, #f6e19a 0%, #dcb455 30%, #b98a2f 62%, #e0bd62 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .65),
-    inset 0 -2px 3px rgba(80, 50, 0, .35),
-    inset 0 0 0 3px rgba(255, 235, 170, .25),
-    0 3px 8px rgba(0, 0, 0, .5);
+  border: 1px solid var(--messing-rand);
+  background: var(--messing);
+  box-shadow: var(--messing-schatten);
   position: relative;
 }
 /* Schrauben links und rechts */
@@ -387,3 +388,82 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .card .inner { transition-duration: .01s; }
   .card.just-matched .inner, .card.miss .face { animation: none; }
 }
+
+
+/* ================= Messing-Thema für Felder und Buttons ================= */
+.panel, .dialog {
+  position: relative;
+  background: var(--messing);
+  border: 1px solid var(--messing-rand);
+  box-shadow: var(--messing-schatten);
+  color: var(--gravur);
+}
+/* Schrauben in den oberen Ecken der Felder */
+.panel::before, .panel::after {
+  content: '';
+  position: absolute;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background:
+    linear-gradient(135deg, transparent 44%, rgba(60, 35, 0, .7) 45% 55%, transparent 56%),
+    radial-gradient(circle at 35% 35%, #fff3c4, #c9993d 55%, #7a5414);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .45);
+}
+.panel::before { left: 9px; }
+.panel::after { right: 9px; }
+.panel h2 { color: #5a3c08; text-shadow: var(--gravur-licht); padding-left: 10px; }
+.hint { color: #4a3208; text-shadow: var(--gravur-licht); }
+
+.chip, .secondary, .icon-btn, .score {
+  background: var(--messing);
+  border: 1px solid var(--messing-rand);
+  color: var(--gravur);
+  text-shadow: var(--gravur-licht);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), inset 0 -2px 2px rgba(120, 80, 0, .25), 0 2px 4px rgba(0, 0, 0, .35);
+}
+.chip { font-weight: 800; }
+.chip small { opacity: .8; }
+/* Gewählt: eingedrückte dunkle Bronze mit heller Schrift */
+.chip.selected {
+  background: var(--messing-gedrueckt);
+  border-color: #2e1c06;
+  color: #fbe9b4;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .8);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, .6), 0 1px 0 rgba(255, 240, 200, .5);
+}
+.chip:disabled { opacity: .45; }
+.chip:active:not(:disabled), .secondary:active, .icon-btn:active { transform: translateY(1px); }
+
+.player-row input {
+  background: linear-gradient(180deg, #e9d398, #f6e6b4);
+  border: 1px solid var(--messing-rand);
+  color: var(--gravur);
+  font-weight: 700;
+  box-shadow: inset 0 2px 4px rgba(90, 60, 0, .35);
+}
+.player-row input:focus { border-color: #5a3c08; box-shadow: inset 0 2px 4px rgba(90, 60, 0, .35), 0 0 0 2px rgba(255, 240, 190, .8); }
+.player-dot { box-shadow: 0 0 0 2px #fbe9b4, 0 0 0 3px var(--messing-rand); }
+
+/* Großer Messing-Knopf */
+.primary {
+  background: var(--messing);
+  color: var(--gravur);
+  text-shadow: var(--gravur-licht);
+  border: 1px solid var(--messing-rand);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .85), inset 0 -3px 4px rgba(120, 80, 0, .3), 0 4px 0 #8a6418, 0 6px 12px rgba(0, 0, 0, .45);
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+.primary:active { transform: translateY(3px); box-shadow: inset 0 2px 4px rgba(90, 60, 0, .4), 0 1px 0 #8a6418, 0 2px 6px rgba(0, 0, 0, .4); }
+
+.icon-btn { color: var(--gravur); }
+.score .pts { color: var(--gravur); }
+.score.active { border: 3px solid var(--pc); }
+.score:not(.active) { opacity: .8; }
+
+.dialog h2 { color: var(--gravur); text-shadow: var(--gravur-licht); }
+#ranking li { background: rgba(255, 250, 230, .55); color: var(--gravur); }
+#ranking li.winner { background: rgba(255, 255, 255, .85); }
+#ranking .stat { color: #4a3208; }
