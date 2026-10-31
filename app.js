@@ -256,7 +256,7 @@ function passeAn(el, size) {
     cap.style.fontSize = fs + 'px';
     const cs = getComputedStyle(cap);
     const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-    while (fs > 6 && cap.scrollHeight > pad + fs * 1.1 * 2 + 2) {
+    while (fs > 6 && (cap.scrollHeight > pad + fs * 1.1 * 2 + 2 || cap.scrollWidth > cap.clientWidth + 1)) {
       fs -= 0.5;
       cap.style.fontSize = fs + 'px';
     }

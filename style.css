@@ -301,9 +301,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
   font-weight: 800;
   line-height: 1.1;
   color: var(--rot);
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  overflow-wrap: anywhere;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+  overflow-wrap: normal;
 }
 .card .face.text {
   background: #fffbd6;
@@ -314,12 +314,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
   padding: 6%;
   font-weight: 700;
   line-height: 1.15;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  overflow-wrap: anywhere;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
-.card .face.text .titel { display: block; font-size: 1.25em; color: var(--rot); margin-bottom: .25em; }
+.card .face.text .titel { hyphens: manual; -webkit-hyphens: manual; display: block; font-size: 1.25em; color: var(--rot); margin-bottom: .25em; }
 
 .card.matched .face { box-shadow: 0 0 0 calc(var(--card) * .05) var(--mc); }
 .card.matched { cursor: default; }
