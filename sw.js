@@ -1,6 +1,6 @@
 // Service Worker: alles vorab cachen, damit das Spiel offline läuft.
 // Bei jeder Änderung an Dateien VERSION hochzählen.
-const VERSION = 'dlrg-memory-v16';
+const VERSION = 'dlrg-memory-v17';
 const DATEIEN = [
   './',
   'app.js',
@@ -19,10 +19,20 @@ const DATEIEN = [
   'img/baderegeln/b08.webp',
   'img/baderegeln/b09.webp',
   'img/baderegeln/b10.webp',
-  'img/klassisch/k01.webp',
   'img/dlrg-logo.webp',
-  'img/rueckseite.webp',
-  'img/tisch.webp',
+  'img/eisregeln/e01.webp',
+  'img/eisregeln/e02.webp',
+  'img/eisregeln/e03.webp',
+  'img/eisregeln/e04.webp',
+  'img/eisregeln/e05.webp',
+  'img/eisregeln/e06.webp',
+  'img/eisregeln/e07.webp',
+  'img/eisregeln/e08.webp',
+  'img/eisregeln/e09.webp',
+  'img/eisregeln/e10.webp',
+  'img/eisregeln/e11.webp',
+  'img/eisregeln/e12.webp',
+  'img/klassisch/k01.webp',
   'img/klassisch/k02.webp',
   'img/klassisch/k03.webp',
   'img/klassisch/k04.webp',
@@ -46,6 +56,8 @@ const DATEIEN = [
   'img/rettungsgeraete/r06.webp',
   'img/rettungsgeraete/r07.webp',
   'img/rettungsgeraete/r08.webp',
+  'img/rueckseite.webp',
+  'img/tisch.webp',
   'img/wasserwelt/w01.webp',
   'img/wasserwelt/w02.webp',
   'img/wasserwelt/w03.webp',

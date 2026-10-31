@@ -12,7 +12,7 @@ Läuft als PWA auf PC, Tablet und Smartphone – auch offline.
 - Die aufgedeckten Karten werden zusätzlich groß unter dem Spielfeld angezeigt (im Querformat daneben)
 
 ## Kartensets freischalten
-Aktuell sind nur **Baderegeln** und **Rettungsgeräte** auswählbar. Klassisch, Wasserwelt und Gemischt sind vorhanden, aber ausgeblendet – freischalten über `AKTIVE_SETS` am Ende von `cards.js`.
+Aktuell sind nur **Baderegeln**, **Eisregeln** und **Rettungsgeräte** auswählbar. Klassisch, Wasserwelt und Gemischt sind vorhanden, aber ausgeblendet – freischalten über `AKTIVE_SETS` am Ende von `cards.js`.
 
 ## Neue Motive hinzufügen
 1. Bild (quadratisch, ca. 480 px, WebP) nach `img/<set>/` legen

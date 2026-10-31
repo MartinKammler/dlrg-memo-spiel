@@ -4,7 +4,10 @@
 // Die Baderegel-Texte sind Entwürfe – bitte mit den offiziellen DLRG-Baderegeln abgleichen.
 
 // Klassische Kacheln, die es auch als Baderegel gibt (gleiches Bild, andere Größe).
-const GLEICHES_MOTIV = { k02: 'b06', k03: 'b05', k05: 'b03', k06: 'b09', k07: 'b07', k08: 'b10' };
+const GLEICHES_MOTIV = {
+  k02: 'b06', k03: 'b05', k05: 'b03', k06: 'b09', k07: 'b07', k08: 'b10',
+  k11: 'e07', k12: 'e03', k13: 'e09', k14: 'e04', k15: 'e06', k16: 'e10',
+};
 
 window.CARD_SETS = [
   {
@@ -57,6 +60,30 @@ window.CARD_SETS = [
     }),
   },
   {
+    id: 'eisregeln',
+    name: 'Eisregeln',
+    beschreibung: 'Wann darf ich aufs Eis?',
+    textModus: true,
+    textLabel: 'Regeltext',
+    motive: [
+      ['Nicht zu früh aufs Eis', 'Gehe nicht gleich an den ersten kalten Tagen aufs Eis!'],
+      ['Anderen helfen', 'Hilf anderen, wenn sie Hilfe brauchen.'],
+      ['Auf Warnungen achten', 'Achte auf Warnungen im Radio und in der Zeitung.'],
+      ['Flach hinlegen', 'Lege dich flach aufs Eis und bewege dich auf dem gleichen Weg zurück Richtung Ufer, wenn du einzubrechen drohst.'],
+      ['Eisdicke prüfen', 'Betritt einen See erst, wenn das Eis 15 cm dick ist. Ein fließendes Gewässer erst, wenn das Eis 20 cm stark ist.'],
+      ['Knackt es: runter!', 'Verlasse das Eis sofort, wenn es knistert und knackt!'],
+      ['Nie alleine', 'Gehe nie alleine aufs Eis!'],
+      ['Kein falscher Alarm', 'Rufe nie um Hilfe, wenn du nicht wirklich in Gefahr bist, aber hilf anderen, wenn sie Hilfe brauchen.'],
+      ['Gewicht verteilen', 'Um das Gewicht zu verteilen, rette andere mit einem Brett, einer Leiter oder einem umgedrehten Schlitten.'],
+      ['Aufwärmen', 'Wärme den Geretteten mit Decken und trockenen Kleidern wieder auf.'],
+      ['Notarzt rufen', 'Rufe nach der Rettung einen Notarzt. Eine Unterkühlung kann lebensbedrohlich sein.'],
+      ['Beim Amt erkundigen', 'Erkundige dich beim zuständigen Amt, ob das Eis schon trägt!'],
+    ].map(([titel, text], i) => {
+      const id = 'e' + String(i + 1).padStart(2, '0');
+      return { id, name: titel, titel, text, img: 'img/eisregeln/' + id + '.webp' };
+    }),
+  },
+  {
     id: 'wasserwelt',
     name: 'Wasserwelt',
     beschreibung: 'Tiere und Schätze aus dem Meer',
@@ -88,6 +115,6 @@ window.CARD_SETS = [
 // Welche Sets im Spiel auswählbar sind. Die übrigen Motive bleiben erhalten
 // und können hier einfach wieder freigeschaltet werden,
 // z. B. ['baderegeln', 'rettungsgeraete', 'klassisch', 'wasserwelt', 'gemischt'].
-const AKTIVE_SETS = ['baderegeln', 'rettungsgeraete'];
+const AKTIVE_SETS = ['baderegeln', 'eisregeln', 'rettungsgeraete'];
 window.ALLE_CARD_SETS = window.CARD_SETS;
 window.CARD_SETS = AKTIVE_SETS.map((id) => window.ALLE_CARD_SETS.find((s) => s.id === id)).filter(Boolean);
