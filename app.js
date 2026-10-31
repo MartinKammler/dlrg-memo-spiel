@@ -198,7 +198,7 @@ function baueBrett() {
     el.type = 'button';
     el.className = 'card';
     el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', verdeckt');
-    el.innerHTML = '<div class="inner"><div class="back" aria-hidden="true">?</div>' + faceHtml(k) + '</div>';
+    el.innerHTML = '<div class="inner"><div class="back" aria-hidden="true"></div>' + faceHtml(k) + '</div>';
     el.addEventListener('click', () => karteGeklickt(i));
     k.el = el;
     board.appendChild(el);

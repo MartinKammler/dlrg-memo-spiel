@@ -225,19 +225,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
   box-shadow: 0 2px 5px rgba(0, 40, 80, .2);
 }
 
-/* Rückseite: rot mit Wellen */
+/* Rückseite: DLRG-Motiv */
 .card .back {
-  background:
-    radial-gradient(circle at 50% 120%, rgba(255,255,255,.18) 0 30%, transparent 31%),
-    repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0 6px, transparent 6px 12px),
-    var(--rot);
+  background: var(--rot) url('img/rueckseite.webp') center / cover no-repeat;
   border: calc(var(--card) * .045) solid #fff;
-  display: grid;
-  place-items: center;
-  color: var(--gelb);
-  font-weight: 900;
-  font-size: calc(var(--card) * .42);
-  text-shadow: 0 2px 0 var(--rot-dunkel);
 }
 .card:hover:not(.open):not(.matched) .back { filter: brightness(1.08); }
 .card:focus-visible { outline: 3px solid var(--blau); outline-offset: 3px; border-radius: 10px; }
