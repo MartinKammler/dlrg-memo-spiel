@@ -2,12 +2,8 @@
 
 /* ================= Konfiguration ================= */
 
-// Alle Raster mit gerader Kartenzahl (a ≤ b). Im Querformat werden sie gedreht.
-const RASTER = [
-  [3, 4], [4, 4], [4, 5], [5, 6], [6, 6], [6, 8], [8, 8], [8, 10],
-  [10, 10], [10, 12], [12, 12], [12, 14], [14, 14], [14, 16], [16, 16],
-];
-const MAX_KARTEN_HANDY = 36;          // 6×6
+// Raster mit gerader Kartenzahl (a ≤ b), Maximum 5×6. Im Querformat werden sie gedreht.
+const RASTER = [[3, 4], [4, 4], [4, 5], [5, 6]];
 const SPIELER_FARBEN = ['#e30613', '#0069b4', '#2e9e44', '#f39200'];
 const ZURUECKDREHEN_MS = 1500;
 const SPEICHER_KEY = 'dlrg-memory-settings-v1';
@@ -15,7 +11,6 @@ const SPEICHER_KEY = 'dlrg-memory-settings-v1';
 /* ================= Hilfsfunktionen ================= */
 
 const $ = (sel) => document.querySelector(sel);
-const istHandy = () => Math.min(screen.width, screen.height) < 600;
 
 function mischen(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -90,13 +85,11 @@ function renderSetup() {
 
   // Raster
   const motive = aktuellesSet().motive.length;
-  const maxKarten = istHandy() ? MAX_KARTEN_HANDY : Infinity;
   const gridChoice = $('#gridChoice');
   gridChoice.innerHTML = '';
   let auswahlGueltig = false;
   let groessteGueltige = null;
   for (const [a, b] of RASTER) {
-    if (a * b > maxKarten) continue;
     const key = a + 'x' + b;
     const paare = (a * b) / 2;
     const ok = paare <= motive;
@@ -115,10 +108,10 @@ function renderSetup() {
   if (!auswahlGueltig) settings.raster = groessteGueltige;
   gridChoice.querySelectorAll('.chip').forEach((b) => b.classList.toggle('selected', b.dataset.key === settings.raster));
 
-  const naechstes = RASTER.find(([a, b]) => (a * b) / 2 > motive && a * b <= maxKarten);
+  const naechstes = RASTER.find(([a, b]) => (a * b) / 2 > motive);
   $('#gridHint').textContent = naechstes
-    ? 'Größere Felder werden frei, sobald mehr Motive da sind (' + naechstes[0] + '×' + naechstes[1] + ' braucht ' + (naechstes[0] * naechstes[1]) / 2 + ').'
-    : (istHandy() ? 'Auf dem Handy ist 6×6 das größte Feld.' : '');
+    ? naechstes[0] + '×' + naechstes[1] + ' braucht ' + (naechstes[0] * naechstes[1]) / 2 + ' Motive – dieses Set hat ' + motive + '.'
+    : '';
 
   // Spieler
   $('#playerCount').querySelectorAll('.chip').forEach((b) => {
@@ -171,6 +164,7 @@ function neuesSpiel() {
     })),
     dran: 0,
     offen: [],          // Indizes der aktuell aufgedeckten Karten
+    vorschau: [],       // Karten, die groß in der Vorschau stehen
     gesperrt: false,
     timer: null,
     gefunden: 0,
@@ -185,6 +179,17 @@ function neuesSpiel() {
   setStatus(spiel.spieler.length > 1 ? spiel.spieler[0].name + ' fängt an!' : 'Viel Spaß!');
 }
 
+function faceHtml(k) {
+  if (k.art === 'text') {
+    return '<div class="face text"><span>' + (k.motiv.titel ? '<strong class="titel">' + escapeHtml(k.motiv.titel) + '</strong>' : '') + escapeHtml(k.motiv.text) + '</span></div>';
+  }
+  // Lernsets im Bild-Modus: Bezeichnung unter das Bild schreiben
+  if (k.motiv.titel && !spiel.textModus) {
+    return '<div class="face captioned"><img src="' + k.motiv.img + '" alt="" draggable="false"><span class="caption">' + escapeHtml(k.motiv.titel) + '</span></div>';
+  }
+  return '<div class="face"><img src="' + k.motiv.img + '" alt="" draggable="false"></div>';
+}
+
 function baueBrett() {
   const board = $('#board');
   board.innerHTML = '';
@@ -193,63 +198,95 @@ function baueBrett() {
     el.type = 'button';
     el.className = 'card';
     el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', verdeckt');
-    const face = k.art === 'text'
-      ? '<div class="face text"><span>' + (k.motiv.titel ? '<strong class="titel">' + escapeHtml(k.motiv.titel) + '</strong>' : '') + escapeHtml(k.motiv.text) + '</span></div>'
-      : (k.motiv.titel && !spiel.textModus)
-        // Lernsets im Bild-Modus: Bezeichnung unter das Bild schreiben
-        ? '<div class="face captioned"><img src="' + k.motiv.img + '" alt="" draggable="false"><span class="caption">' + escapeHtml(k.motiv.titel) + '</span></div>'
-        : '<div class="face"><img src="' + k.motiv.img + '" alt="" draggable="false"></div>';
-    el.innerHTML = '<div class="inner"><div class="back" aria-hidden="true">?</div>' + face + '</div>';
+    el.innerHTML = '<div class="inner"><div class="back" aria-hidden="true">?</div>' + faceHtml(k) + '</div>';
     el.addEventListener('click', () => karteGeklickt(i));
     k.el = el;
     board.appendChild(el);
   });
 }
 
+// Spielfeld + Vorschau der aufgedeckten Karten.
+// Hochformat: Vorschau unter dem Feld, jede Karte halb so breit wie das Feld.
+// Querformat: Vorschau rechts daneben, jede Karte halb so hoch wie das Feld.
 function layout() {
   if (!spiel) return;
   const wrap = $('#boardWrap');
   const W = wrap.clientWidth - 16;
   const H = wrap.clientHeight - 8;
-  // Feld so drehen, dass es zum Bildschirm passt
-  const quer = W > H;
+  const quer = W > H * 1.15;
+  wrap.classList.toggle('quer', quer);
   const cols = quer ? spiel.b : spiel.a;
   const rows = quer ? spiel.a : spiel.b;
-  const gap = Math.max(3, Math.min(10, Math.floor(Math.min(W / cols, H / rows) * 0.07)));
-  const size = Math.floor(Math.min((W - gap * (cols - 1)) / cols, (H - gap * (rows - 1)) / rows));
+  const gap = Math.max(4, Math.min(10, Math.floor(Math.min(W, H) / 60)));
+  let size;
+  if (quer) {
+    // Breite: cols*s + (cols-1)g + 2g + Vorschau (rows*s + (rows-2)g)/2
+    const sW = (W - (cols - 1) * gap - 2 * gap - ((rows - 2) * gap) / 2) / (cols + rows / 2);
+    const sH = (H - (rows - 1) * gap) / rows;
+    size = Math.min(sW, sH);
+  } else {
+    // Höhe: rows*s + (rows-1)g + 2g + Vorschau (cols*s + (cols-2)g)/2
+    const sW = (W - (cols - 1) * gap) / cols;
+    const sH = (H - (rows - 1) * gap - 2 * gap - ((cols - 2) * gap) / 2) / (rows + cols / 2);
+    size = Math.min(sW, sH);
+  }
+  size = Math.max(20, Math.floor(size));
   const board = $('#board');
   board.style.setProperty('--cols', cols);
-  board.style.setProperty('--card', Math.max(size, 20) + 'px');
+  board.style.setProperty('--card', size + 'px');
   board.style.setProperty('--gap', gap + 'px');
-  passeTexteAn();
+  const brett = quer ? rows * size + (rows - 1) * gap : cols * size + (cols - 1) * gap;
+  const pv = Math.floor((brett - gap) / 2);
+  const preview = $('#preview');
+  preview.style.setProperty('--card', pv + 'px');
+  preview.style.setProperty('--gap', gap + 'px');
+  for (const k of spiel.karten) passeAn(k.el, size);
+  zeigeVorschau();
 }
 
-// Textkarten: Schriftgröße verkleinern, bis der Text in die Karte passt
-function passeTexteAn() {
-  const size = parseFloat($('#board').style.getPropertyValue('--card'));
-  for (const k of spiel.karten) {
-    const cap = k.el.querySelector('.caption');
-    if (cap) {
-      // Beschriftung: höchstens zwei Zeilen, sonst Schrift verkleinern
-      let fs = size * 0.11;
-      cap.style.fontSize = fs + 'px';
-      const cs = getComputedStyle(cap);
-      const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-      while (fs > 6 && cap.scrollHeight > pad + fs * 1.1 * 2 + 2) {
-        fs -= 0.5;
-        cap.style.fontSize = fs + 'px';
-      }
-      continue;
-    }
-    if (k.art !== 'text') continue;
-    const face = k.el.querySelector('.face');
-    let fs = size * 0.17;
-    face.style.fontSize = fs + 'px';
-    while (fs > 6 && (face.scrollHeight > face.clientHeight + 1 || face.scrollWidth > face.clientWidth + 1)) {
+// Schrift auf Text- und beschrifteten Karten an die Kartengröße anpassen
+function passeAn(el, size) {
+  const cap = el.querySelector('.caption');
+  if (cap) {
+    // Beschriftung: höchstens zwei Zeilen, sonst Schrift verkleinern
+    let fs = size * 0.11;
+    cap.style.fontSize = fs + 'px';
+    const cs = getComputedStyle(cap);
+    const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+    while (fs > 6 && cap.scrollHeight > pad + fs * 1.1 * 2 + 2) {
       fs -= 0.5;
-      face.style.fontSize = fs + 'px';
+      cap.style.fontSize = fs + 'px';
     }
+    return;
   }
+  const face = el.querySelector('.face.text');
+  if (!face) return;
+  let fs = size * 0.17;
+  face.style.fontSize = fs + 'px';
+  while (fs > 6 && (face.scrollHeight > face.clientHeight + 1 || face.scrollWidth > face.clientWidth + 1)) {
+    fs -= 0.5;
+    face.style.fontSize = fs + 'px';
+  }
+}
+
+// Die aufgedeckten Karten groß in der Vorschau zeigen
+function zeigeVorschau() {
+  if (!spiel) return;
+  const slots = document.querySelectorAll('#preview .pv-slot');
+  const size = parseFloat($('#preview').style.getPropertyValue('--card')) || 100;
+  slots.forEach((slot, n) => {
+    const i = spiel.vorschau[n];
+    slot.innerHTML = '';
+    slot.classList.toggle('leer', i === undefined);
+    if (i === undefined) return;
+    const k = spiel.karten[i];
+    const el = document.createElement('div');
+    el.className = 'card open' + (k.gefunden ? ' matched' : '');
+    if (k.gefunden) el.style.setProperty('--mc', k.el.style.getPropertyValue('--mc'));
+    el.innerHTML = '<div class="inner">' + faceHtml(k) + '</div>';
+    slot.appendChild(el);
+    passeAn(el, size);
+  });
 }
 
 function renderScores() {
@@ -285,8 +322,11 @@ function karteGeklickt(i) {
   if (k.gefunden || spiel.offen.includes(i)) return;
 
   k.el.classList.add('open');
+  if (spiel.offen.length === 0) spiel.vorschau = [];
+  spiel.vorschau.push(i);
   k.el.setAttribute('aria-label', 'Karte ' + (i + 1) + ', ' + (k.art === 'text' ? infoText(k.motiv) : k.motiv.name || 'Bild ' + k.key));
   spiel.offen.push(i);
+  zeigeVorschau();
 
   // Regeltext gut lesbar oben anzeigen, wenn eine Textkarte aufgedeckt wird
   if (k.art === 'text') setStatus(infoText(k.motiv), true);
@@ -312,6 +352,7 @@ function karteGeklickt(i) {
       setTimeout(() => kk.el.classList.remove('just-matched'), 1000);
     }
     spiel.offen = [];
+    zeigeVorschau();
     navigator.vibrate?.(40);
     renderScores();
     if (x.motiv.text) setStatus(infoText(x.motiv), true);
@@ -333,6 +374,8 @@ function zurueckdrehen() {
     el.setAttribute('aria-label', 'Karte ' + (j + 1) + ', verdeckt');
   }
   spiel.offen = [];
+  spiel.vorschau = [];
+  zeigeVorschau();
   spiel.gesperrt = false;
   if (spiel.spieler.length > 1) {
     spiel.dran = (spiel.dran + 1) % spiel.spieler.length;

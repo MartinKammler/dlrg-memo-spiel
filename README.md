@@ -8,8 +8,8 @@ Läuft als PWA auf PC, Tablet und Smartphone – auch offline.
 - Zwei Karten aufdecken: gleiches Motiv = 1 Punkt, Karten bleiben liegen und der Spieler ist **nochmal dran**
 - Kein Paar: Karten drehen sich nach 1,5 s zurück (oder sofort per Tipp), der nächste Spieler ist dran
 - Baderegeln wahlweise als **Bild + Bild** oder **Bild + Regeltext**; bei jedem gefundenen Paar wird die Regel eingeblendet
-- Nur Raster mit gerader Kartenzahl (3×4 bis 16×16); auf dem Handy max. 6×6
-- Größere Raster werden automatisch freigeschaltet, sobald genug Motive vorhanden sind
+- Spielfelder 3×4, 4×4, 4×5 und 5×6 (nur gerade Kartenzahlen); ein Feld ist nur wählbar, wenn das Set genug Motive hat
+- Die aufgedeckten Karten werden zusätzlich groß unter dem Spielfeld angezeigt (im Querformat daneben)
 
 ## Neue Motive hinzufügen
 1. Bild (quadratisch, ca. 480 px, WebP) nach `img/<set>/` legen
