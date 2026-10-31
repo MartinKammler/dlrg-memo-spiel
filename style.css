@@ -108,7 +108,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
 #startBtn { width: 100%; max-width: 560px; }
 
 /* ---------- Spielansicht ---------- */
-#game { height: 100%; overflow: hidden; }
+#game {
+  height: 100%;
+  overflow: hidden;
+  /* Tisch in Holzoptik */
+  background: #7a3a14 url('img/tisch.webp') center / 600px repeat;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, .35);
+}
 
 .bar {
   display: flex;
@@ -156,7 +162,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .7);
 }
+.status.rule { color: var(--text); text-shadow: none; }
 .status.rule {
   background: var(--gelb);
   margin: 0 10px 6px;
@@ -189,9 +198,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 #boardWrap.quer #preview { flex-direction: column; }
 .pv-slot { width: var(--card); height: var(--card); position: relative; }
 .pv-slot.leer {
-  border: 2px dashed #b9cfdf;
+  border: 2px dashed rgba(255, 255, 255, .45);
   border-radius: calc(var(--card) * .1);
-  background: rgba(255, 255, 255, .4);
+  background: rgba(0, 0, 0, .15);
 }
 .pv-slot .card { cursor: default; }
 .pv-slot .card .inner { transition: none; }
