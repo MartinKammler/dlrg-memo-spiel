@@ -84,3 +84,10 @@ window.CARD_SETS = [
     motive: alle.filter((m) => !(m.gleichWie && ids.has(m.gleichWie))),
   });
 }
+
+// Welche Sets im Spiel auswählbar sind. Die übrigen Motive bleiben erhalten
+// und können hier einfach wieder freigeschaltet werden,
+// z. B. ['baderegeln', 'rettungsgeraete', 'klassisch', 'wasserwelt', 'gemischt'].
+const AKTIVE_SETS = ['baderegeln', 'rettungsgeraete'];
+window.ALLE_CARD_SETS = window.CARD_SETS;
+window.CARD_SETS = AKTIVE_SETS.map((id) => window.ALLE_CARD_SETS.find((s) => s.id === id)).filter(Boolean);

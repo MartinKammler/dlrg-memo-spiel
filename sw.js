@@ -1,6 +1,6 @@
 // Service Worker: alles vorab cachen, damit das Spiel offline läuft.
 // Bei jeder Änderung an Dateien VERSION hochzählen.
-const VERSION = 'dlrg-memory-v10';
+const VERSION = 'dlrg-memory-v11';
 const DATEIEN = [
   './',
   'app.js',

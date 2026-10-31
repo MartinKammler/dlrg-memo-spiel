@@ -11,6 +11,9 @@ Läuft als PWA auf PC, Tablet und Smartphone – auch offline.
 - Spielfelder 3×4, 4×4, 4×5 und 5×6 (nur gerade Kartenzahlen); ein Feld ist nur wählbar, wenn das Set genug Motive hat
 - Die aufgedeckten Karten werden zusätzlich groß unter dem Spielfeld angezeigt (im Querformat daneben)
 
+## Kartensets freischalten
+Aktuell sind nur **Baderegeln** und **Rettungsgeräte** auswählbar. Klassisch, Wasserwelt und Gemischt sind vorhanden, aber ausgeblendet – freischalten über `AKTIVE_SETS` am Ende von `cards.js`.
+
 ## Neue Motive hinzufügen
 1. Bild (quadratisch, ca. 480 px, WebP) nach `img/<set>/` legen
 2. Eintrag in `cards.js` ergänzen

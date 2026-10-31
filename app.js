@@ -49,6 +49,9 @@ const settings = {
   namen: gespeichert.namen || ['Spieler 1', 'Spieler 2', 'Spieler 3', 'Spieler 4'],
 };
 
+// Gespeichertes Set ist evtl. nicht mehr freigeschaltet
+if (!CARD_SETS.some((s) => s.id === settings.set)) settings.set = CARD_SETS[0].id;
+
 const aktuellesSet = () => CARD_SETS.find((s) => s.id === settings.set) || CARD_SETS[0];
 const textModusAktiv = () => !!aktuellesSet().textModus && settings.modus === 'text';
 
