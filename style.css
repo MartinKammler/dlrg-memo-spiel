@@ -84,7 +84,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   color: #6a7b8a;
 }
 
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .chips + .chips { margin-top: 10px; }
 
 .chip {
@@ -101,7 +101,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .chip:disabled { opacity: .4; cursor: not-allowed; }
 .chip.grid-chip { border-radius: 12px; min-width: 70px; text-align: center; padding: 6px 10px; }
 
-.hint { margin: 10px 0 0; font-size: .85rem; color: #6a7b8a; min-height: 1em; }
+.hint { text-align: center; margin: 10px 0 0; font-size: .85rem; color: #6a7b8a; min-height: 1em; }
 
 #playerNames { display: grid; gap: 8px; margin-top: 12px; }
 .player-row { display: flex; align-items: center; gap: 10px; }
