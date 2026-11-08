@@ -26,13 +26,19 @@ Geltungsbereich / Scope
 Diese MIT-Lizenz gilt ausschließlich für den Programmcode (HTML, CSS,
 JavaScript) von Martin Kammler.
 
-Nicht von dieser Lizenz erfasst sind alle Bilder, Illustrationen, Icons,
-Regeltexte und das Logo in img/ und icons/: Diese sind urheberrechtlich
-geschütztes Material der Deutschen Lebens-Rettungs-Gesellschaft (DLRG),
-das Logo ist eine geschützte Marke der DLRG. Nutzungsrechte hierfür sind
-separat bei der DLRG zu klären.
+Nicht von dieser Lizenz erfasst sind die Bilder, Icons, Regeltexte und das
+Logo in img/ und icons/:
 
-This MIT license covers the source code only. All images, illustrations,
-icons, rule texts and the logo in img/ and icons/ are copyrighted material
-of the DLRG and are explicitly excluded; their use requires permission
-from the DLRG.
+- Bade- und Eisregeln (Bilder und Texte) sowie das Logo sind urheberrechtlich
+  geschütztes Material der Deutschen Lebens-Rettungs-Gesellschaft (DLRG),
+  das Logo ist zusätzlich eine geschützte Marke der DLRG.
+- Die Motive der Rettungsgeräte sind KI-generierte Darstellungen, die eng an
+  die DLRG-Originale angelehnt sind.
+
+Nutzungsrechte sind in beiden Fällen vorab mit der DLRG zu klären.
+
+This MIT license covers the source code only. The images, icons, rule texts
+and the logo in img/ and icons/ are excluded: the bathing/ice safety rules
+and the logo are copyrighted material and trademarks of the DLRG, and the
+rescue equipment motifs are AI-generated depictions closely modelled on the
+DLRG originals. Their use requires clarification with the DLRG.
