@@ -1,5 +1,15 @@
 # DLRG Memo-Spiel
 
+> **Programmiert von Martin Kammler, Mitglied der DLRG.**
+>
+> Dieses Spiel ist privat entstanden und wird der DLRG **kostenlos** zur Verfügung gestellt –
+> zur freien Verwendung in der **DLRG-Jugendarbeit und in der Ausbildung**, in allen
+> Gliederungen, ohne Lizenzgebühren.
+>
+> Der **Programmcode** stammt von Martin Kammler und steht unter der [MIT-Lizenz](LICENSE).
+> Die **Bilder, Illustrationen, Regeltexte und das Logo** sind Material der DLRG (© DLRG)
+> und sind von der MIT-Lizenz ausgenommen.
+
 Memory-Spiel im Browser mit den DLRG-Enten (klassisches Memory), den Baderegeln, den Rettungsgeräten und der Wasserwelt.
 Läuft als PWA auf PC, Tablet und Smartphone – auch offline.
 
@@ -26,14 +36,21 @@ python3 -m http.server 8000
 → http://localhost:8000
 
 ## Hinweis zu den Bildern
-Die Illustrationen sind Material der DLRG. Vor einer öffentlichen Veröffentlichung Nutzungsrechte klären.
+Die Illustrationen sind Material der DLRG (siehe Urheberrecht und Lizenz unten). Für eine Weitergabe oder Veröffentlichung außerhalb der DLRG-Arbeit sind die Nutzungsrechte mit der DLRG zu klären.
 Die aktuellen Bilder sind aus Screenshots geschnitten (klassische Kacheln nur 126 px) – Originaldateien ersetzen sie 1:1.
 Die Baderegel-Texte entsprechen dem offiziellen DLRG-Plakat „Baderegeln“ (2024).
 
-## Lizenz
-Der **Programmcode** (HTML, CSS, JavaScript) steht unter der [MIT-Lizenz](LICENSE).
+## Urheberrecht und Lizenz
 
-Die **Bilder** in `img/` und `icons/` sind davon ausdrücklich **ausgenommen**: Sie sind
-Material der DLRG bzw. aus Screenshots abgeleitet und **nicht** unter MIT lizenziert.
-Für deren Nutzung, Weitergabe oder Veröffentlichung sind die Rechte separat bei der DLRG
-zu klären.
+**Programmcode** (HTML, CSS, JavaScript) – Autor: **Martin Kammler**, 2026.
+Lizenziert unter der [MIT-Lizenz](LICENSE).
+
+**Bilder, Illustrationen, Baderegel-/Eisregel-Texte und das DLRG-Logo** in `img/` und `icons/`:
+© Deutsche Lebens-Rettungs-Gesellschaft (DLRG). Diese Inhalte sind von der MIT-Lizenz
+**ausdrücklich ausgenommen** und werden hier nur zur Nutzung im Rahmen der DLRG-Ausbildungs-
+und Öffentlichkeitsarbeit eingebunden. Eine Weitergabe, Veränderung oder anderweitige
+Veröffentlichung ist nur mit Genehmigung der DLRG zulässig; die Rechte sind separat
+bei der DLRG zu klären.
+
+Das DLRG-Logo ist eine geschützte Marke der DLRG. Dieses Projekt ist ein privates
+Hilfsmittel und kein offizielles Angebot der DLRG.
