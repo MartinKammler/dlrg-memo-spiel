@@ -416,6 +416,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .panel::after { right: 9px; }
 .panel h2 { color: #5a3c08; text-shadow: var(--gravur-licht); padding-left: 10px; }
 .hint { color: #4a3208; text-shadow: var(--gravur-licht); }
+.hint:empty { display: none; }
 
 .chip, .secondary, .icon-btn, .score {
   background: var(--messing);

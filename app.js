@@ -98,23 +98,19 @@ function renderSetup() {
     const ok = paare <= motive;
     if (ok) groessteGueltige = key;
     if (ok && key === settings.raster) auswahlGueltig = true;
+    if (!ok) continue; // Raster, für die das Set zu wenige Motive hat, nicht anzeigen
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'chip grid-chip';
     btn.dataset.key = key;
-    btn.disabled = !ok;
     btn.innerHTML = a + '×' + b + '<small>' + paare + ' Paare</small>';
-    btn.title = ok ? '' : 'Braucht ' + paare + ' Motive – vorhanden: ' + motive;
     btn.onclick = () => { settings.raster = key; renderSetup(); };
     gridChoice.appendChild(btn);
   }
   if (!auswahlGueltig) settings.raster = groessteGueltige;
   gridChoice.querySelectorAll('.chip').forEach((b) => b.classList.toggle('selected', b.dataset.key === settings.raster));
 
-  const naechstes = RASTER.find(([a, b]) => (a * b) / 2 > motive);
-  $('#gridHint').textContent = naechstes
-    ? naechstes[0] + '×' + naechstes[1] + ' braucht ' + (naechstes[0] * naechstes[1]) / 2 + ' Motive – dieses Set hat ' + motive + '.'
-    : '';
+  $('#gridHint').textContent = '';
 
   // Spieler
   $('#playerCount').querySelectorAll('.chip').forEach((b) => {
