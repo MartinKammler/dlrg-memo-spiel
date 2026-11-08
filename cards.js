@@ -1,24 +1,8 @@
 // Kartensets – neue Motive einfach hier ergänzen.
 // Jedes Motiv: id (eindeutig), img (Pfad), optional text (für Bild–Text-Modus und Hinweis bei Treffer),
-// optional gleichWie (id eines anderen Motivs mit demselben Bild → im Set "Gemischt" nur einmal).
 // Baderegel-Texte: offizieller Wortlaut (DLRG-Plakat Baderegeln 2024). Kurztitel selbst formuliert.
 
-// Klassische Kacheln, die es auch als Baderegel gibt (gleiches Bild, andere Größe).
-const GLEICHES_MOTIV = {
-  k02: 'b06', k03: 'b05', k05: 'b03', k06: 'b09', k07: 'b07', k08: 'b10',
-  k11: 'e07', k12: 'e03', k13: 'e09', k14: 'e04', k15: 'e06', k16: 'e10',
-};
-
 window.CARD_SETS = [
-  {
-    id: 'klassisch',
-    name: 'Klassisch',
-    beschreibung: 'Das klassische DLRG-Memory',
-    motive: Array.from({ length: 16 }, (_, i) => {
-      const id = 'k' + String(i + 1).padStart(2, '0');
-      return { id, img: 'img/klassisch/' + id + '.webp', gleichWie: GLEICHES_MOTIV[id] };
-    }),
-  },
   {
     id: 'baderegeln',
     name: 'Baderegeln',
@@ -83,21 +67,6 @@ window.CARD_SETS = [
       return { id, name: titel, titel, text, img: 'img/eisregeln/' + id + '.webp' };
     }),
   },
-  {
-    id: 'wasserwelt',
-    name: 'Wasserwelt',
-    beschreibung: 'Tiere und Schätze aus dem Meer',
-    // Nummern bleiben fest an den Bilddateien; entfernte Motive (ähnlich zu anderen): w10, w11
-    motive: [
-      [1, 'Wal'], [2, 'Krake'], [3, 'Robbe'], [4, 'Makrele'], [5, 'Papageifisch'], [6, 'Falterfisch'],
-      [7, 'Fischschwarm'], [8, 'Roter Streifenfisch'], [9, 'Pinker Fisch'], [12, 'Seepferdchen'],
-      [13, 'Schatztruhe'], [14, 'Kugelfisch'], [15, 'Anglerfisch'], [16, 'Krabbe'], [17, 'Qualle'],
-      [18, 'Muschel mit Perle'], [19, 'DLRG-Schildkröte'],
-    ].map(([n, name]) => {
-      const id = 'w' + String(n).padStart(2, '0');
-      return { id, name, img: 'img/wasserwelt/' + id + '.webp' };
-    }),
-  },
 ];
 
 // "Gemischt" wird automatisch aus allen Sets gebildet – ohne doppelte Motive.
@@ -112,9 +81,8 @@ window.CARD_SETS = [
   });
 }
 
-// Welche Sets im Spiel auswählbar sind. Die übrigen Motive bleiben erhalten
-// und können hier einfach wieder freigeschaltet werden,
-// z. B. ['baderegeln', 'rettungsgeraete', 'klassisch', 'wasserwelt', 'gemischt'].
+// Welche Sets im Spiel auswählbar sind,
+// z. B. ['baderegeln', 'eisregeln', 'rettungsgeraete', 'gemischt'].
 const AKTIVE_SETS = ['baderegeln', 'eisregeln', 'rettungsgeraete'];
 window.ALLE_CARD_SETS = window.CARD_SETS;
 window.CARD_SETS = AKTIVE_SETS.map((id) => window.ALLE_CARD_SETS.find((s) => s.id === id)).filter(Boolean);

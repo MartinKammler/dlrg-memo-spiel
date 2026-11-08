@@ -25,7 +25,7 @@ Läuft als PWA auf PC, Tablet und Smartphone – auch offline.
 ## Kartensets
 Im Spiel auswählbar sind **Baderegeln** (10 Motive), **Eisregeln** (12) und **Rettungsgeräte** (8).
 
-Im Code liegen zusätzlich die unfertigen Entwürfe *Klassisch*, *Wasserwelt* und *Gemischt*. Sie sind **nicht Teil des Spiels** und werden nicht angezeigt; wer sie ausprobieren will, trägt sie in `AKTIVE_SETS` am Ende von `cards.js` ein.
+Welche Sets angezeigt werden, steht in `AKTIVE_SETS` am Ende von `cards.js`. Das automatisch gebildete Set *Gemischt* (alle Motive zusammen) lässt sich dort freischalten.
 
 ## Neue Motive hinzufügen
 1. Bild (quadratisch, ca. 480 px, WebP) nach `img/<set>/` legen

@@ -42,7 +42,7 @@ function escapeHtml(s) {
 
 const gespeichert = laden();
 const settings = {
-  set: gespeichert.set || 'klassisch',
+  set: gespeichert.set || 'baderegeln',
   modus: gespeichert.modus || 'bild',
   raster: gespeichert.raster || '4x4',
   spieler: gespeichert.spieler || 2,
